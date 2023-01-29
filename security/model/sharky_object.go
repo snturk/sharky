@@ -4,13 +4,12 @@ import "sharky/utils"
 
 type permissionMap map[SharkyRole][]SharkyAction
 
-func (pm permissionMap) GetActions(role SharkyRole) ([]SharkyAction, error) {
-	actions, exists := pm[role]
+func (obj SharkyObject) GetActions(role SharkyRole) ([]SharkyAction, error) {
+	actions, exists := obj.permissionMap[role]
 
 	if exists {
 		return actions, nil
 	}
-
 	return nil, utils.RoleNotExistError(role)
 }
 
@@ -43,6 +42,5 @@ func (builder SharkyObjectBuilder) Build() SharkyObject {
 		Name:          builder.name,
 		permissionMap: builder.permissionMap,
 	}
-
 	return obj
 }
