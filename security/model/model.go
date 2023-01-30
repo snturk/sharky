@@ -1,7 +1,6 @@
 package model
 
 type SharkySubject struct {
-
 }
 
 type SharkyRole struct {
@@ -10,11 +9,4 @@ type SharkyRole struct {
 
 type SharkyAction struct {
 	Name string
-}
-
-type SharkySecurityContext interface {
-	GetSubject() SharkySubject
-	GetRole() SharkyRole
-	GetAction() SharkyAction
-	GetObject() SharkyObject
 }
