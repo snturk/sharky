@@ -10,10 +10,3 @@ type SharkyRole struct {
 type SharkyAction struct {
 	Name string
 }
-
-type PermissionDecisionContext interface {
-	GetSubject() SharkySubject
-	GetRole() SharkyRole
-	GetAction() SharkyAction
-	GetObject() SharkyObject
-}

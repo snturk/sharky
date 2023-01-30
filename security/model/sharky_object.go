@@ -16,6 +16,8 @@ func (obj SharkyObject) GetActions(role SharkyRole) ([]SharkyAction, error) {
 type SharkyObject struct {
 	Name string
 	permissionMap
+	Type string // TODO: Can type be changed to another data type? (URN, URI, etc.) Issue #1 go get
+	// TODO: Another field needed to implement Object-Specific permissions. Issue #1
 }
 
 type SharkyObjectBuilder struct {
