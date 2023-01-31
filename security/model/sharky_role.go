@@ -28,14 +28,14 @@ func (r SharkyRole) HasPermission(p Permission) bool {
 	return false
 }
 
-func (r SharkyRole) GetPermissionsForURN(urn urn.URN) []Permission {
+func (r SharkyRole) GetPermissionsForURN(urn urn.URN) ([]Permission, bool) {
 	var permissions []Permission
 	for _, permission := range r.Permissions {
 		if permission.ObjectURN == urn {
 			permissions = append(permissions, permission)
 		}
 	}
-	return permissions
+	return permissions, len(permissions) > 0
 }
 
 func (r SharkyRole) GetPermissionsForNamespace(namespaceId string) []Permission {

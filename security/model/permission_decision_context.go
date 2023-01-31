@@ -12,3 +12,15 @@ type PermissionDecisionContext struct {
 	action SharkyAction
 	object SharkyObject
 }
+
+func (pdc PermissionDecisionContext) GetRole() SharkyRole {
+	return pdc.role
+}
+
+func (pdc PermissionDecisionContext) GetAction() SharkyAction {
+	return pdc.action
+}
+
+func (pdc PermissionDecisionContext) GetObject() SharkyObject {
+	return pdc.object
+}
