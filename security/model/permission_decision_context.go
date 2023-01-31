@@ -13,6 +13,14 @@ type PermissionDecisionContext struct {
 	object SharkyObject
 }
 
+func NewPermissionDecisionContext(role SharkyRole, action SharkyAction, object SharkyObject) PermissionDecisionContext {
+	return PermissionDecisionContext{
+		role:   role,
+		action: action,
+		object: object,
+	}
+}
+
 func (pdc PermissionDecisionContext) GetRole() SharkyRole {
 	return pdc.role
 }
