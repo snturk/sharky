@@ -13,12 +13,14 @@ var (
 	ACTION_DELETE = model2.SharkyAction{Name: "DELETE"}
 )
 
+const NAMESPACE_ID = "sharky:obj"
+
 // TestEnforcer_Enforce tests the Enforcer.Enforce() method
 // to ensure that it returns true for a valid permission
 // and false for an invalid permission
 func TestEnforcer_Enforce(t *testing.T) {
 	// Test a permission that should be allowed
-	objUrn := *urn.NewURN("sharkyobj", "testobj")
+	objUrn := *urn.NewURN(NAMESPACE_ID, "testobj:1234")
 	fmt.Println(objUrn)
 	obj := model2.SharkyObject{}.Builder().SetName("TestObject").SetUrn(objUrn).Build()
 
