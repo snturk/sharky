@@ -1,11 +1,12 @@
 package security
 
-import "sharky/security/model"
-
-var lastResult bool
+import (
+	"sharky/model"
+)
 
 type enforcer struct {
 	// TODO: Fields needed. Issue #1
+	lastResult bool
 }
 
 func InitializeEnforcer(params ...string) {
@@ -29,7 +30,7 @@ func (e enforcer) Enforce(context model.PermissionDecisionContext) bool {
 	}
 
 	for _, permission := range permissions {
-		if permission.Action == action {
+		if permission.GetAction() == action {
 			return true
 		}
 	}

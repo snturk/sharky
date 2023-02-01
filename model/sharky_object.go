@@ -11,10 +11,11 @@ type SharkyObject struct {
 
 type SharkyObjectBuilder struct {
 	name string
+	urn  urn.URN
 }
 
-func (obj SharkyObject) Builder() *SharkyObjectBuilder {
-	return &SharkyObjectBuilder{}
+func (obj SharkyObject) Builder() SharkyObjectBuilder {
+	return SharkyObjectBuilder{}
 }
 
 func (builder SharkyObjectBuilder) SetName(name string) SharkyObjectBuilder {
@@ -22,9 +23,15 @@ func (builder SharkyObjectBuilder) SetName(name string) SharkyObjectBuilder {
 	return builder
 }
 
+func (builder SharkyObjectBuilder) SetUrn(urn urn.URN) SharkyObjectBuilder {
+	builder.urn = urn
+	return builder
+}
+
 func (builder SharkyObjectBuilder) Build() SharkyObject {
 	var obj = SharkyObject{
 		Name: builder.name,
+		Urn:  builder.urn,
 	}
 	return obj
 }

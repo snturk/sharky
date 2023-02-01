@@ -3,7 +3,7 @@ package utils
 import (
 	"errors"
 	"fmt"
-	"sharky/security/model"
+	"sharky/model"
 )
 
 func RoleNotExistError(role model.SharkyRole) error {

@@ -31,7 +31,7 @@ func (r SharkyRole) HasPermission(p Permission) bool {
 func (r SharkyRole) GetPermissionsForURN(urn urn.URN) ([]Permission, bool) {
 	var permissions []Permission
 	for _, permission := range r.Permissions {
-		if permission.ObjectURN == urn {
+		if permission.GetUrn() == urn {
 			permissions = append(permissions, permission)
 		}
 	}
@@ -41,7 +41,7 @@ func (r SharkyRole) GetPermissionsForURN(urn urn.URN) ([]Permission, bool) {
 func (r SharkyRole) GetPermissionsForNamespace(namespaceId string) []Permission {
 	var permissions []Permission
 	for _, permission := range r.Permissions {
-		if permission.ObjectURN.GetNamespaceID() == namespaceId {
+		if permission.urn.GetNamespaceID() == namespaceId {
 			permissions = append(permissions, permission)
 		}
 	}
