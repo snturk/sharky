@@ -45,10 +45,10 @@ func (builder PermissionBuilder) Build() Permission {
 type PermissionDecisionContext struct {
 	role   SharkyRole
 	action SharkyAction
-	object SharkyObject
+	object SharkyDomain
 }
 
-func NewPermissionDecisionContext(role SharkyRole, action SharkyAction, object SharkyObject) PermissionDecisionContext {
+func NewPermissionDecisionContext(role SharkyRole, action SharkyAction, object SharkyDomain) PermissionDecisionContext {
 	return PermissionDecisionContext{
 		role:   role,
 		action: action,
@@ -64,6 +64,6 @@ func (pdc PermissionDecisionContext) GetAction() SharkyAction {
 	return pdc.action
 }
 
-func (pdc PermissionDecisionContext) GetObject() SharkyObject {
+func (pdc PermissionDecisionContext) GetObject() SharkyDomain {
 	return pdc.object
 }
