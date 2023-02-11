@@ -7,7 +7,7 @@ import (
 )
 
 func RoleNotExistError(role model.SharkyRole) error {
-	return newError("SharkyRole: %s is not exists on permission map for related SharkyObject", role.Name)
+	return newError("SharkyRole: %s is not exists on permission map for related SharkyDomain", role.Name)
 }
 
 func newError(msg string, args ...string) error {
