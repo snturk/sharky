@@ -1,4 +1,4 @@
-module sharky
+module github.com/snturk/sharky
 
 go 1.18
 
