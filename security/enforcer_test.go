@@ -13,7 +13,7 @@ var (
 	ACTION_DELETE = model.SharkyAction{Name: "DELETE"}
 )
 
-const NamespaceId = "sharky:obj"
+const NamespaceId = "sharky:testdomain"
 
 var logger = log.New(log.Writer(), "TestEnforcer_Enforce ", log.LstdFlags)
 
@@ -23,15 +23,15 @@ var logger = log.New(log.Writer(), "TestEnforcer_Enforce ", log.LstdFlags)
 func TestEnforcer_Enforce(t *testing.T) {
 	// Test a permission that should be allowed
 
-	objUrn := *urn.NewURN(NamespaceId, "testobj:1234")
-	obj := model.SharkyDomain{}.Builder().SetName("TestObject").SetUrn(objUrn).Build()
-	perm := model.Permission{}.Builder().SetUrn(objUrn).SetAction(ACTION_VIEW).Build()
+	domainUrn := *urn.NewURN(NamespaceId, "testobj:1234")
+	domain := model.SharkyDomain{}.Builder().SetName("TestObject").SetUrn(domainUrn).Build()
+	perm := model.PermissionRule{}.Builder().SetUrn(domainUrn).SetAction(ACTION_VIEW).Build()
 	role := model.SharkyRole{
 		Name:        "TestRole",
-		Permissions: []model.Permission{perm},
+		Permissions: []model.PermissionRule{perm},
 	}
 
-	context := model.NewPermissionDecisionContext(role, ACTION_VIEW, obj)
+	context := model.NewPermissionDecisionContext(role, ACTION_VIEW, domain)
 
 	enforcer, err := GetEnforcer(*logger)
 	if err != nil {
@@ -45,7 +45,7 @@ func TestEnforcer_Enforce(t *testing.T) {
 	}
 
 	// Test a permission that should be denied
-	context = model.NewPermissionDecisionContext(role, ACTION_DELETE, obj)
+	context = model.NewPermissionDecisionContext(role, ACTION_DELETE, domain)
 	if enforcer.Enforce(context) {
 		t.Errorf("Enforcer did not return false for invalid permission")
 	} else {

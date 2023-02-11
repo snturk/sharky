@@ -2,7 +2,7 @@ package model
 
 import "github.com/voicera/gooseberry/urn"
 
-type Permission struct {
+type PermissionRule struct {
 	urn    urn.URN
 	action SharkyAction
 }
@@ -12,15 +12,15 @@ type PermissionBuilder struct {
 	action SharkyAction
 }
 
-func (p Permission) GetUrn() urn.URN {
+func (p PermissionRule) GetUrn() urn.URN {
 	return p.urn
 }
 
-func (p Permission) GetAction() SharkyAction {
+func (p PermissionRule) GetAction() SharkyAction {
 	return p.action
 }
 
-func (p Permission) Builder() PermissionBuilder {
+func (p PermissionRule) Builder() PermissionBuilder {
 	return PermissionBuilder{}
 }
 
@@ -34,8 +34,8 @@ func (builder PermissionBuilder) SetAction(action SharkyAction) PermissionBuilde
 	return builder
 }
 
-func (builder PermissionBuilder) Build() Permission {
-	var permission = Permission{
+func (builder PermissionBuilder) Build() PermissionRule {
+	var permission = PermissionRule{
 		urn:    builder.urn,
 		action: builder.action,
 	}

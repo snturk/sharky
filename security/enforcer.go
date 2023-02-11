@@ -27,7 +27,7 @@ func (e enforcer) Enforce(context model.PermissionDecisionContext) bool {
 
 	for _, permission := range permissions {
 		if permission.GetAction() == action {
-			e.logger.Printf("Permission found for role %v and object %v", role, obj)
+			e.logger.Printf("PermissionRule found for role %v and object %v", role, obj)
 			return true
 		}
 	}

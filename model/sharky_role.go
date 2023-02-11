@@ -4,14 +4,14 @@ import "github.com/voicera/gooseberry/urn"
 
 type SharkyRole struct {
 	Name        string
-	Permissions []Permission
+	Permissions []PermissionRule
 }
 
-func (r SharkyRole) AddPermission(p Permission) {
+func (r SharkyRole) AddPermission(p PermissionRule) {
 	r.Permissions = append(r.Permissions, p)
 }
 
-func (r SharkyRole) RemovePermission(p Permission) {
+func (r SharkyRole) RemovePermission(p PermissionRule) {
 	for i, permission := range r.Permissions {
 		if permission == p {
 			r.Permissions = append(r.Permissions[:i], r.Permissions[i+1:]...)
@@ -19,7 +19,7 @@ func (r SharkyRole) RemovePermission(p Permission) {
 	}
 }
 
-func (r SharkyRole) HasPermission(p Permission) bool {
+func (r SharkyRole) HasPermission(p PermissionRule) bool {
 	for _, permission := range r.Permissions {
 		if permission == p {
 			return true
@@ -28,8 +28,8 @@ func (r SharkyRole) HasPermission(p Permission) bool {
 	return false
 }
 
-func (r SharkyRole) GetPermissionsForURN(urn urn.URN) ([]Permission, bool) {
-	var permissions []Permission
+func (r SharkyRole) GetPermissionsForURN(urn urn.URN) ([]PermissionRule, bool) {
+	var permissions []PermissionRule
 	for _, permission := range r.Permissions {
 		if permission.GetUrn() == urn {
 			permissions = append(permissions, permission)
@@ -38,8 +38,8 @@ func (r SharkyRole) GetPermissionsForURN(urn urn.URN) ([]Permission, bool) {
 	return permissions, len(permissions) > 0
 }
 
-func (r SharkyRole) GetPermissionsForNamespace(namespaceId string) []Permission {
-	var permissions []Permission
+func (r SharkyRole) GetPermissionsForNamespace(namespaceId string) []PermissionRule {
+	var permissions []PermissionRule
 	for _, permission := range r.Permissions {
 		if permission.urn.GetNamespaceID() == namespaceId {
 			permissions = append(permissions, permission)
